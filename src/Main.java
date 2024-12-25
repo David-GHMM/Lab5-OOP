@@ -32,7 +32,6 @@ public class Main {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
 
-                // Получаем имя клиента
                 clientName = in.readLine();
                 System.out.println("Новый клиент подключился: " + clientName);
                 
@@ -40,7 +39,6 @@ public class Main {
                     onlineClients.put(clientName, out);
                 }
                 
-                // Оповещаем всех о новом клиенте
                 broadcastMessage("СИСТЕМА: " + clientName + " присоединился к чату");
 
                 String message;
