@@ -15,15 +15,11 @@ public class Client {
             Socket socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
             System.out.println("Подключено к серверу");
 
-            // Поток для отправки сообщений серверу
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            // Поток для получения сообщений от сервера
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            // Отправляем имя клиента
             out.println(name);
 
-            // Создаем отдельный поток для получения сообщений от сервера
             Thread receiveThread = new Thread(() -> {
                 try {
                     String message;
@@ -36,7 +32,6 @@ public class Client {
             });
             receiveThread.start();
 
-            // Основной поток для отправки сообщений
             String message;
             while (true) {
                 message = scanner.nextLine();
